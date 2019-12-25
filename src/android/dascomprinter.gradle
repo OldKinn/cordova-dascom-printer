@@ -1,0 +1,11 @@
+dependencies {
+    implementation files('libs\\dascom2.0.5.3604.jar')
+}
+
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDir("libs")
+        }
+    }
+}

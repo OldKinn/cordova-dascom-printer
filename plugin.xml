@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-dascomprinter" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-dascomprinter</name>
+    <description>dascom热敏蓝牙打印机插件</description>
+    <author>Leon(leonooo@163.com)</author>
+    <js-module name="cordova-plugin-dascomprinter" src="www/cordova-plugin-dascomprinter.js">
+        <clobbers target="cordova.plugins.DascomPrinter" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="DascomPrinter">
+                <param name="android-package" value="com.chinacreator.cordova.plugin.DascomPrinter" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
+        <source-file src="src/android/DascomPrinter.java" target-dir="src/com/chinacreator/cordova/plugin" />
+        <framework src="src/android/dascomprinter.gradle" custom="true" type="gradleReference" />
+        <hook type="after_plugin_install" src="hooks/android/after_plugin_install.js" />
+    </platform>
+</plugin>
