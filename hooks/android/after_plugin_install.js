@@ -1,13 +1,19 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const source = path.join(__dirname, '../../src/android/libs');
-const target = path.join(__dirname, '../../../../../app/libs');
+module.exports = function(ctx) {
+    if (!ctx.opts.platforms.includes('android')) return;
 
-fs.copy(source, target, function(err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('cordova-plugin-dascomprinter install success');
-    }
-});
+    const source = path.join(__dirname, '../../src/android/libs');
+    const target = path.join(ctx.opts.projectRoot, '/platforms/android/app/libs');
+
+    fs.copy(source, target, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(`libs-dir:${source}`);
+            console.log(`libs-dest:${target}`);
+            console.log('^_^ cordova-plugin-dascomprinter install success');
+        }
+    });
+};
