@@ -1,9 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
+const includes = require('lodash/includes');
+const get = require('lodash/get');
 
 module.exports = function(ctx) {
-    if (!ctx.opts.platforms.includes('android')) return;
-
+    const platforms = get(ctx, 'opts.cordova.platforms', []);
+    if (!includes(platforms, 'android')) return;
     const source = path.join(__dirname, '../../src/android/libs');
     const target = path.join(ctx.opts.projectRoot, '/platforms/android/app/libs');
 
